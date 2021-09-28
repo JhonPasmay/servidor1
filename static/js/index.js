@@ -69,23 +69,8 @@ function LED1_Off(){
   // called when a message arrives
   function onMessageArrived(message) {
     console.log("onMessageArrived:"+message.payloadString);
-    const separador=':';
-    mensaje=message.payloadString;
-    const mensajesep=mmensaje.split(':');
-    if(mensaje.includes(separador)){
-      document.getElementById("sensor").innerHTML=mensajesep[1];
-      document.getElementById("sensor1").innerHTML=mensajesep[2];
-      document.getElementById("recibido").innerHTML=mensajesep[0];
-    }
-    else if(message.payloadString=="ON"){
-      console.log("Encendido");
-    }
-    else (message.payloadString=="'OFF'"){
-      console.log("Apagado");
-    }
-    else{
-      document.getElementById("recibido").innerHTML=payloadString;
-    }
-
+    var sms = message.payloadString.split(";")
+    document.getElementById("sensor").innerHTML=sms[0];
+    document.getElementById("sensor1").innerHTML=sms[1];
   }
   
