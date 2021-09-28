@@ -3,7 +3,7 @@
 function LED1_On() {
 	//alert("led on");
 	console.log("led on");
-	//document.getElementById("sensor").innerHTML="led on";
+	document.getElementById("sensor").innerHTML="led on";
 	message = new Paho.MQTT.Message("ON");
     	message.destinationName = "pasmayj@gmail.com/t1";
     	client.send(message);
@@ -15,7 +15,7 @@ function LED1_Off(){
 	message = new Paho.MQTT.Message("OFF");
     	message.destinationName = "pasmayj@gmail.com/t1";
     	client.send(message);
-	//document.getElementById("sensor").innerHTML="led off";
+	document.getElementById("sensor").innerHTML="led off";
 }
 
 
@@ -69,8 +69,23 @@ function LED1_Off(){
   // called when a message arrives
   function onMessageArrived(message) {
     console.log("onMessageArrived:"+message.payloadString);
-    var sms = message.payloadString.split(";")
-    document.getElementById("sensor").innerHTML=sms[0];
-    document.getElementById("sensor1").innerHTML=sms[1];
+    const separador=':';
+    mensaje=message.payloadString;
+    const mensajesep=mmensaje.split(':');
+    if(mensaje.includes(separador)){
+      document.getElementById("sensor").innerHTML=mensajesep[1];
+      document.getElementById("sensor1").innerHTML=mensajesep[2];
+      document.getElementById("recibido").innerHTML=mensajesep[0];
+    }
+    else if(message.payloadString=="ON"){
+      console.log("Encendido");
+    }
+    else (message.payloadString=="'OFF'"){
+      console.log("Apagado");
+    }
+    else{
+      document.getElementById("recibido").innerHTML=payloadString;
+    }
+
   }
   
