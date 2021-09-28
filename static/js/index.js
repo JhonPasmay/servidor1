@@ -1,21 +1,39 @@
+//https://www.eclipse.org/paho/clients/js/
+
 function LED1_On() {
-	//alert("led on");
-	console.log("led on");
-	//document.getElementById("sensor").innerHTML="led on";
-	message = new Paho.MQTT.Message("ON");
-    	message.destinationName = "pasmayj@gmail.com/t1";
-    	client.send(message);
+  //alert("led on");
+  console.log("led on");
+  //document.getElementById("sensor").innerHTML="led on";
+  message = new Paho.MQTT.Message("ON");
+      message.destinationName = "pasmayj@gmail.com/t1";
+      client.send(message);
   
 }
-function LED1_Off(){	
-	//alert("led off");
-	console.log("led off");
-	message = new Paho.MQTT.Message("OFF");
-    	message.destinationName = "pasmayj@gmail.com/t1";
-    	client.send(message);
-	//document.getElementById("sensor").innerHTML="led off";
+function LED1_Off(){  
+  //alert("led off");
+  console.log("led off");
+  message = new Paho.MQTT.Message("OFF");
+      message.destinationName = "pasmayj@gmail.com/t1";
+      client.send(message);
+  //document.getElementById("sensor").innerHTML="led off";
 }
 
+
+function HISTORIAL_S1(){
+     console.log("led on");
+  //document.getElementById("sensor").innerHTML=client.historial;
+  message = new Paho.MQTT.Message("ON");
+    message.destinationName = "pasmayj@gmail.com/t1";
+      client.send(message);
+}
+
+function HISTORIAL_S2(){
+     console.log("led on");
+  //document.getElementById("sensor").innerHTML=client.historial;
+  message = new Paho.MQTT.Message("ON");
+    message.destinationName = "pasmayj@gmail.com/t1";
+      client.send(message);
+}
 
 
 
@@ -44,17 +62,17 @@ function LED1_Off(){
   function onConnect() {
     // Once a connection has been made, make a subscription and send a message.
     console.log("Conectado...");
-	
+  
     client.subscribe("pasmayj@gmail.com/t2");
     message = new Paho.MQTT.Message("Bievenido");
     message.destinationName = "pasmayj@gmail.com/t1";
     client.send(message);
-	
+  
   }
 
   function doFail(e){
     console.log(e);
-	
+  
   }
 
   // called when the client loses its connection
@@ -71,4 +89,3 @@ function LED1_Off(){
     document.getElementById("sensor").innerHTML=sms[0];
     document.getElementById("sensor1").innerHTML=sms[1];
   }
-  
