@@ -105,8 +105,9 @@ function LED1_Off(){
     var sms = message.payloadString.split(";")
     document.getElementById("sensor").innerHTML=sms[0];
     document.getElementById("sensor1").innerHTML=sms[1];
+    
     //comando para poner el sensor desde esp32
-    document.getElementById("sensor").innerHTML=message.payloadString;
+    document.getElementById("sensor").innerHTML=sms[0];
     if(message.payloadString==='ENCENDER'){
      document.getElementById("imagen").src="https://previews.123rf.com/images/sarahdesign/sarahdesign1410/sarahdesign141002939/32951945-ilustraci%C3%B3n-del-bot%C3%B3n-de-encendido.jpg";
     } else if(message.payloadString==='APAGAR'){
